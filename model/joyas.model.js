@@ -16,9 +16,12 @@ export const dbGetJoyas = async ({
     limits,
     offset
   );
-
-  const { rows: joyas } = await pool.query(query);
-  return joyas;
+  try {
+    const { rows: joyas } = await pool.query(query);
+    return joyas;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const dbGetJoya = async ({ id }) => {
